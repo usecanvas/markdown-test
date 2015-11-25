@@ -80,3 +80,33 @@ describe('links', function() {
     );
   });
 });
+
+describe ('emphasis', function() {
+  it('should work with single asterisks', function() {
+    assert.equal(
+      md.renderInline('*single asterisks*'),
+      '<em>single asterisks</em>'
+    );
+  });
+
+  it('should work with single underscores', function() {
+    assert.equal(
+      md.renderInline('_single underscores_'),
+      '<em>single underscores</em>'
+    );
+  });
+
+  it('should work with double asterisks', function() {
+    assert.equal(
+      md.renderInline('**double asterisks**'),
+      '<strong>double asterisks</strong>'
+    );
+  });
+
+  it('should work with double underscores', function() {
+    assert.equal(
+      md.renderInline('__double underscores__'),
+      '<strong>double underscores</strong>'
+    );
+  });
+});
