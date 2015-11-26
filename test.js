@@ -1,8 +1,3 @@
-// Code Spans
-// Links
-// Auto Links
-// Emphasis and double-emphasis
-
 var assert = require('assert');
 
 var MarkdownIt = require('markdown-it'),
