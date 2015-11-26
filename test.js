@@ -74,6 +74,25 @@ describe('links', function() {
       'See my <a href="/about/">About</a> page for details.'
     );
   });
+
+  it('should work with nested inline code', function() {
+    assert.equal(
+      md.renderInline('linking to [`code`](http://example.net/) is fun'),
+      'linking to <a href="http://example.net/"><code>code</code></a> is fun'
+    );
+
+    assert.equal(
+      md.renderInline('linking to [``code (`)``](http://example.net/) is fun'),
+      'linking to <a href="http://example.net/"><code>code (`)</code></a> is fun'
+    );
+  });
+
+  it('should work with nested emphasis', function() {
+    assert.equal(
+      md.renderInline('The [**link of a _lifetime_**](http://example.net) is here'),
+      'The <a href="http://example.net"><strong>link of a <em>lifetime</em></strong></a> is here'
+    );
+  });
 });
 
 describe ('emphasis', function() {
