@@ -109,4 +109,50 @@ describe ('emphasis', function() {
       '<strong>double underscores</strong>'
     );
   });
+
+  it('should work when nested', function() {
+    assert.equal(
+      md.renderInline('***triple emphasis***'),
+      '<strong><em>triple emphasis</em></strong>'
+    );
+
+    assert.equal(
+      md.renderInline('_**triple emphasis**_'),
+      '<em><strong>triple emphasis</strong></em>'
+    );
+
+    assert.equal(
+      md.renderInline('**_triple emphasis_**'),
+      '<strong><em>triple emphasis</em></strong>'
+    );
+
+    assert.equal(
+      md.renderInline('**_triple emphasis_**'),
+      '<strong><em>triple emphasis</em></strong>'
+    );
+  });
+
+  it('should work when nested with spaces', function() {
+    assert.equal(
+      md.renderInline('**triple _emphasis_ allowed**'),
+      '<strong>triple <em>emphasis</em> allowed</strong>'
+    );
+  });
+
+  it('should only work with underscores when surrounded by spaces', function() {
+    assert.equal(
+      md.renderInline('Emphasis _is_ a _nice_ touch'),
+      'Emphasis <em>is</em> a <em>nice</em> touch'
+    );
+
+    assert.equal(
+      md.renderInline('Emphasis_is_a_nice_touch'),
+      'Emphasis_is_a_nice_touch'
+    );
+
+    assert.equal(
+      md.renderInline('Emphasis*is*a*nice*touch'),
+      'Emphasis<em>is</em>a<em>nice</em>touch'
+    );
+  });
 });
