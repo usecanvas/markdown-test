@@ -146,6 +146,18 @@ describe ('emphasis', function() {
     );
   });
 
+  it('should work with nested code', function() {
+    assert.equal(
+      md.renderInline('**Use the `printf()` function.**'),
+      '<strong>Use the <code>printf()</code> function.</strong>'
+    );
+
+    assert.equal(
+      md.renderInline('**Use the `printf()` _function_.**'),
+      '<strong>Use the <code>printf()</code> <em>function</em>.</strong>'
+    );
+  });
+
   it('should work when nested with spaces', function() {
     assert.equal(
       md.renderInline('**triple _emphasis_ allowed**'),
